@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Options from './Options.jsx';
 import styled from 'styled-components'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {serverUrl} from '../../constants.js'
 
 const HoverTarget=styled.div`
   display: none;
@@ -32,7 +33,7 @@ export default function Folder(props) {
     const folderRef=useRef(null)
     useEffect(()=>{
       const getFolderContents=async()=>{
-          await axios.post("http://localhost:8000/api/v1/folders/get-folder-contents",{
+          await axios.post(`${serverUrl}/api/v1/folders/get-folder-contents`,{
               id:data._id
           },{
           headers: {

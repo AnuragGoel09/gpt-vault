@@ -1,1 +1,1 @@
-export const serverUrl="http://localhost:8000"
+export const serverUrl="https://gpt-vault-backend.onrender.com"//"http://localhost:8000"

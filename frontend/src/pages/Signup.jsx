@@ -17,7 +17,6 @@ export default function Signup() {
         const email=formData.get('email')
         const password=formData.get('password')
         const fullname=formData.get('fullname')
-        console.log({email,password,fullname})
         try {
             const res=await registerUser({email,password,fullname})
             const response=await loginUser({email,password})
@@ -31,7 +30,6 @@ export default function Signup() {
 
         } catch (error) {
             console.log("error",error)
-            console.log(error.response.status)
             if(error.response.status==409)
                 setError(()=>"User Already Exists")
             else

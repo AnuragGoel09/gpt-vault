@@ -1,9 +1,9 @@
 import axios from 'axios'
+import {serverUrl} from '../constants.js'
 
 const generate=async(input,history,accesstoken)=>{
-    console.log(accesstoken)
     let output=""
-    const response=await axios.post("http://localhost:8000/api/v1/gemini/generate",{
+    const response=await axios.post(`${serverUrl}/api/v1/gemini/generate`,{
         input:input,
         history:history
     },{

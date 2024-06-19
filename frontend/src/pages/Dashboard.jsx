@@ -6,6 +6,7 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import {serverUrl} from '../constants.js'
 
 export default function Dashboard() {
   
@@ -21,7 +22,7 @@ export default function Dashboard() {
     if(!user)
       navigate("/")
     else{
-        axios.post("http://localhost:8000/api/v1/folders/get-root-folder",{},{
+        axios.post(`${serverUrl}/api/v1/folders/get-root-folder`,{},{
           headers: {
             'Authorization': `Bearer ${user.accessToken}`
           }

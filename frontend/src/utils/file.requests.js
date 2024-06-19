@@ -50,7 +50,6 @@ const getFile=async(fileId,accesstoken)=>{
         }
     }).then((res)=>{file=res.data.data})
     .catch(error=>console.log('Axios error',error))
-    console.log(file)
     return file
 }
 

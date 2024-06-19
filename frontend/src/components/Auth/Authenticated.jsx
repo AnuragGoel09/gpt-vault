@@ -12,11 +12,9 @@ export default function Authenticated({children,setLoader}) {
     const dispatch=useDispatch()
     
     useEffect(()=>{
-        console.log("authenticated")
         if(!user){
             let refreshToken=Cookies.get('refreshToken')
             refreshToken=localStorage.getItem('refreshToken') // temp
-            console.log("Refresh Token",refreshToken)
             if(!refreshToken){
                 navigate("/")
                 setLoader(false)
@@ -25,7 +23,6 @@ export default function Authenticated({children,setLoader}) {
                 const handleAccess=async()=>{
                         try {   
                             const response= await getAccess(refreshToken);
-                            console.log("REPONSE",response)
                             const accessToken=response.data.data.accessToken;
                             refreshToken=response.data.data.refreshToken;
                             const fullname=response.data.data.fullname;
@@ -34,7 +31,6 @@ export default function Authenticated({children,setLoader}) {
                             // temp
                             localStorage.setItem('refreshToken',refreshToken)
                             dispatch(initializeUser({accessToken,refreshToken,fullname}));
-                            console.log("auth")
                         } catch (error) {
                             navigate("/")
                             console.log(error)

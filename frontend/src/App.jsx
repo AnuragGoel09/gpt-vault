@@ -11,7 +11,6 @@ import Loader from "./components/Loader.jsx";
 function App() {
   const user=useSelector(state=>state.user.value)
   const [loader,setLoader]=useState(true);
-  console.log(loader)
 
   return (
     <div className="overflow-hidden bg-slate-500">

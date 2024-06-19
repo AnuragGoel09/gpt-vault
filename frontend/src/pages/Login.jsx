@@ -16,7 +16,6 @@ export default function Login() {
         const formData=new FormData(e.target);
         const email=formData.get('email')
         const password=formData.get('password')
-        console.log({email,password})
         try {
             const response=await loginUser({email,password})
             dispatch(initializeUser({
@@ -28,7 +27,6 @@ export default function Login() {
             Cookies.set('refreshToken', response.data.data.refreshToken, { secure: true, httpOnly: true, sameSite: 'Strict' });
         } catch (error) {
             console.log("ERROR",error)
-            console.log(error.response.status)
             if(error.response.status==404)
                 setError(()=>"User Not Found")
             else if(error.response.status==401)

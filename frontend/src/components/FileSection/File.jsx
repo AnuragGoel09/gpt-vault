@@ -7,7 +7,6 @@ import { getFile } from '../../utils/file.requests.js';
 
 export default function File(props) {
   const data=props.data
-  // console.log(data)
   const [showOptions,setShowOptions]=useState(false)
   const user=useSelector((state)=>state.user.value)
   const fileRef=useRef()
