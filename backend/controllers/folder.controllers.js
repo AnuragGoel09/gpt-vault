@@ -104,9 +104,27 @@ const deleteFolder=asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200,"delete successful"))
 })
 
+
+const updateFolderName=asyncHandler(async(req,res)=>{
+    const {folderName,id}=req.body
+    if(!id)
+        throw new ApiError(400,"Folder does not exist")
+    
+    const folder= await Folder.findById(id)
+    if(!folder)
+        throw new ApiError(400,"Folder does not exist")
+    folder.folderName=folderName
+    await folder.save({validateBeforeSave:false})
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{},"FileName updates"))
+})
+
+
 export {
     createFolder,
     getRootFolder,
     getFolderContent,
-    deleteFolder
+    deleteFolder,
+    updateFolderName
 }

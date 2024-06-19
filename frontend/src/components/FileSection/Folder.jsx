@@ -19,7 +19,12 @@ const HoverComponent=styled.div`
 
 export default function Folder(props) {
     const data=props.data;
+    const [folderName,setFolderName]=useState(data?.folderName)
     const user=useSelector((state)=>state.user.value);
+    useEffect(()=>{
+      if(data.isRootDir)
+        setFolderName(user.fullname)
+    },[user,data])
     const [folderContent,setFolderContent]=useState(null);
     const [showSubContent,setShowSubContent]=useState(false);
     const [showOptions,setShowOptions]=useState(false)
@@ -53,7 +58,7 @@ export default function Folder(props) {
           {!showSubContent && <KeyboardArrowRightIcon/>}
           {showSubContent && <KeyboardArrowDownIcon/>}
           <div className='grow overflow-hidden text-ellipsis'>
-            {data.folderName}
+            {folderName}
           </div>
           <div className='z-10 cursor-pointer p-0.5 rounded-md m-auto hover:bg-violet-900' onClick={(event)=>{
             event.stopPropagation()
@@ -63,7 +68,7 @@ export default function Folder(props) {
           </div>
       </HoverComponent>
       {
-        showOptions && <Options folder={folderRef} id={data._id} setState={setState} root={props.root} setShowSubContent={setShowSubContent}/>
+        showOptions && <Options folder={folderRef} id={data._id} setFolderName={setFolderName} setState={setState} root={props.root} setShowSubContent={setShowSubContent}/>
       }        
       {showSubContent && <div className='w-grow bg-violet-700 pl-3 flex flex-col'>
           

@@ -44,7 +44,6 @@ const updateFile=asyncHandler(async(req,res)=>{
 
 const updateFileName=asyncHandler(async(req,res)=>{
     const {fileName,id}=req.body
-    console.log(req.body)
     if(!id)
         throw new ApiError(400,"File not exists")
     

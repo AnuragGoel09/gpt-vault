@@ -1,7 +1,8 @@
 import axios from 'axios'
+import {serverUrl} from '../constants.js'
 
 const addFolder=async(parentDir,accesstoken)=>{
-    await axios.post("http://localhost:8000/api/v1/folders/createfolder",{
+    await axios.post(`${serverUrl}/api/v1/folders/createfolder`,{
         folderName:"New Folder",
         parentDir:parentDir
     },{
@@ -14,7 +15,7 @@ const addFolder=async(parentDir,accesstoken)=>{
 }
 
 const deleteFolder=async(folderId,accesstoken)=>{
-    await axios.post("http://localhost:8000/api/v1/folders/delete-folder",{
+    await axios.post(`${serverUrl}/api/v1/folders/delete-folder`,{
         id:folderId
     },{
         headers: {
@@ -25,7 +26,21 @@ const deleteFolder=async(folderId,accesstoken)=>{
     .catch(error => console.error('Axios error:', error));
 }
 
+const updateFoldernameInDB=async(newName,accesstoken,file_id)=>{
+    await axios.post(`${serverUrl}/api/v1/folders/updatefoldername`,{
+        id:file_id,
+        folderName:newName
+    },{
+        headers:{
+            'Authorization':`Bearer ${accesstoken}`
+        }
+    })
+    .then()
+    .catch(error=>console.log('Axios error',error))
+}
+
 export {
     addFolder,
-    deleteFolder
+    deleteFolder,
+    updateFoldernameInDB
 }

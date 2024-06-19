@@ -1,7 +1,8 @@
 import axios from 'axios'
+import {serverUrl} from '../constants.js'
 
 const updateChatInDB=async(newContent,accesstoken,file_id)=>{
-    await axios.post("http://localhost:8000/api/v1/files/updatefile",{
+    await axios.post(`${serverUrl}/api/v1/files/updatefile`,{
         newContent:newContent,
         id:file_id
     },{
@@ -14,7 +15,7 @@ const updateChatInDB=async(newContent,accesstoken,file_id)=>{
 }
 
 const updateFilenameInDB=async(newName,accesstoken,file_id)=>{
-    await axios.post("http://localhost:8000/api/v1/files/updatefilename",{
+    await axios.post(`${serverUrl}/api/v1/files/updatefilename`,{
         id:file_id,
         fileName:newName
     },{
@@ -27,7 +28,7 @@ const updateFilenameInDB=async(newName,accesstoken,file_id)=>{
 }
 
 const addFile=async(parentDir,accesstoken)=>{
-    await axios.post("http://localhost:8000/api/v1/files/createfile",{
+    await axios.post(`${serverUrl}/api/v1/files/createfile`,{
         fileName:"New_File",
         parentDir:parentDir
     },{
@@ -41,7 +42,7 @@ const addFile=async(parentDir,accesstoken)=>{
 
 const getFile=async(fileId,accesstoken)=>{
     let file
-    await axios.post("http://localhost:8000/api/v1/files/getfile",{
+    await axios.post(`${serverUrl}/api/v1/files/getfile`,{
         id:fileId
     },{
         headers: {
@@ -54,7 +55,7 @@ const getFile=async(fileId,accesstoken)=>{
 }
 
 const deleteFile=async(fileId,accesstoken)=>{
-    await axios.post("http://localhost:8000/api/v1/files/deletefile",{
+    await axios.post(`${serverUrl}/api/v1/files/deletefile`,{
         id:fileId
     },{
         headers: {
