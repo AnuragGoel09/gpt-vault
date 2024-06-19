@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import Authenticated from "./components/Auth/Authenticated.jsx";
 import Loader from "./components/Loader.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const user=useSelector(state=>state.user.value)
@@ -22,6 +23,7 @@ function App() {
               <Route path="/login" element={<Login/>}/>
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/dashboard" element={<Dashboard/>}/>
+              <Route element={NotFound} />
             </Routes>  
           }
           {
