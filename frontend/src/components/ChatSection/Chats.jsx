@@ -18,20 +18,19 @@ export default function Chats(props) {
       >
         <Navbar/>
             {
-              !file.content && <div className='h-full w-full flex items-center justify-center text-xl text-gray-300/50'>
+              !file?.content && <div className='h-full w-full flex items-center justify-center text-xl text-gray-300/50'>
                 No file choosen..
               </div>
             }
             {
-              file.content?.map((item, index) => (
+              file?.content?.map((item, index) => (
                 <div key={index} className='w-full'>
                   { item.role==="user" && <UserChat text={item.parts[0].text}/>}
                   { item.role==="model" && <ModelChat text={item.parts[0].text}/>}
                 </div>
               ))
             }   
-        { file.content && <InputSection/>}           
-            {/* <div ref={messageRef}>hii</div> */}
+        { file?.content && <InputSection/>}         
       </div>
     </>
   )

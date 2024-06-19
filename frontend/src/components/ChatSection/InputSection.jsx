@@ -40,7 +40,7 @@ export default function InputSection(props) {
             parts:[{text:out}]
           }
         ],
-        accesstoken:user.accesstoken
+        accesstoken:user.accessToken
       }))
       setSending(false)
       setInput("")
@@ -76,7 +76,7 @@ export default function InputSection(props) {
               !sending && <SendIcon onClick={handleSend}/> 
              } 
              {
-              sending && <CircularProgress/>
+              sending && <CircularProgress color='inherit' size={'20px'}/>
              } 
             </div>
         

@@ -5,6 +5,7 @@ import FileManager from '../components/FileSection/FileManager.jsx';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   
@@ -12,19 +13,22 @@ export default function Dashboard() {
   const [toggle,setToggle]=useState(true)
   const [rootFolder,setRootFolder]=useState(null)
   const user=useSelector((state)=>state.user.value)
-
+  const navigate=useNavigate()
   const handleFileManager=()=>{
       setToggle((prev)=>!prev)
   }
-
   useEffect(()=>{
-    axios.post("http://localhost:8000/api/v1/folders/get-root-folder",{},{
-      headers: {
-        'Authorization': `Bearer ${user.accesstoken}`
-      }
-    })
-    .then(response =>setRootFolder(response.data.data))
-    .catch(error => console.error('Axios error:', error));
+    if(!user)
+      navigate("/")
+    else{
+        axios.post("http://localhost:8000/api/v1/folders/get-root-folder",{},{
+          headers: {
+            'Authorization': `Bearer ${user.accessToken}`
+          }
+        })
+        .then(response =>setRootFolder(()=>response.data.data))
+        .catch(error => console.error('Axios error:', error));
+    }
   },[])
   return (
     <div className='bg-zinc-900 h-screen w-screen flex relative'>

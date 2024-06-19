@@ -17,9 +17,6 @@ const HoverComponent=styled.div`
   }
 `;
 
-
-
-
 export default function Folder(props) {
     const data=props.data;
     const user=useSelector((state)=>state.user.value);
@@ -28,18 +25,19 @@ export default function Folder(props) {
     const [showOptions,setShowOptions]=useState(false)
     const [state,setState]=useState(false)
     const folderRef=useRef(null)
-    
     useEffect(()=>{
-      axios.post("http://localhost:8000/api/v1/folders/get-folder-contents",{
-          id:data._id
-      },{
-      headers: {
-        'Authorization': `Bearer ${user.accesstoken}`
+      const getFolderContents=async()=>{
+          await axios.post("http://localhost:8000/api/v1/folders/get-folder-contents",{
+              id:data._id
+          },{
+          headers: {
+            'Authorization': `Bearer ${user.accessToken}`
+          }
+        })
+        .then(response =>setFolderContent(response.data.data))
+        .catch(error => console.error('Axios error:', error));      
       }
-    })
-    .then(response =>setFolderContent(response.data.data))
-    .catch(error => console.error('Axios error:', error));
-      
+      getFolderContents()
   },[state,showSubContent])
     const handleClick=()=>{
       setShowSubContent((prev)=>!prev)
@@ -65,7 +63,7 @@ export default function Folder(props) {
           </div>
       </HoverComponent>
       {
-        showOptions && <Options folder={folderRef} id={data._id} setState={setState} root={props.root}/>
+        showOptions && <Options folder={folderRef} id={data._id} setState={setState} root={props.root} setShowSubContent={setShowSubContent}/>
       }        
       {showSubContent && <div className='w-grow bg-violet-700 pl-3 flex flex-col'>
           

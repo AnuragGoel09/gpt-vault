@@ -5,16 +5,17 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function FileManager(props) {
-  const root=props.root;
+  const rootFolder=props.root;
   const user=useSelector((state)=>state.user.value)
   useEffect(()=>{
-    if(root)
-    root.folderName=user.fullname
-  },[root])
+    if(rootFolder){
+      rootFolder.folderName=user.fullname
+    }
+  },[rootFolder])
 
   return (
     <div className='w-1/5 bg-violet-950 pt-20'>
-      {root && <Folder data={root} root={true}/>}
+      {rootFolder && <Folder data={rootFolder} root={true}/>}
     </div>
   )
 }

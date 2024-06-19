@@ -14,7 +14,6 @@ const updateChatInDB=async(newContent,accesstoken,file_id)=>{
 }
 
 const updateFilenameInDB=async(newName,accesstoken,file_id)=>{
-    console.log(file_id)
     await axios.post("http://localhost:8000/api/v1/files/updatefilename",{
         id:file_id,
         fileName:newName

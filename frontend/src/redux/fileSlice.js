@@ -19,6 +19,9 @@ export const fileSlice = createSlice({
             updateChatInDB(action.payload.content,action.payload.accesstoken,state.value._id)
         
         },
+        updateFileName:(state,action)=>{
+            state.value.fileName=action.payload
+        },
         resetFile:(state)=>{
             state.value={}
         }
@@ -26,6 +29,6 @@ export const fileSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {initializeFile ,updateChat, resetFile} = fileSlice.actions
+export const {initializeFile ,updateChat, updateFileName,resetFile} = fileSlice.actions
 
 export default fileSlice.reducer

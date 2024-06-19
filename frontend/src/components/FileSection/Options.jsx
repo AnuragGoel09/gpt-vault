@@ -10,17 +10,19 @@ export default function Options(props) {
   const optionsRef=useRef()
 
   const addfolder=async()=>{
-    await addFolder(props.id,user.accesstoken) 
+    await addFolder(props.id,user.accessToken) 
     props.setState((state)=>!state)
-  }
-  
-  const addfile=async()=>{
-    await addFile(props.id,user.accesstoken)
-    props.setState((state)=>!state)
+    props.setShowSubContent(true);
+    }
+    
+    const addfile=async()=>{
+      await addFile(props.id,user.accessToken)
+      props.setState((state)=>!state)
+      props.setShowSubContent(true);
   }
 
   const deletefolder=async()=>{
-    await deleteFolder(props.id,user.accesstoken) 
+    await deleteFolder(props.id,user.accessToken) 
     if(props.folder.current && optionsRef.current){
       props.folder.current.style.display="none"
       optionsRef.current.style.display="none"
