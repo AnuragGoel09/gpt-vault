@@ -21,9 +21,9 @@ export default function Home() {
         <div className='w-[40%] bg-black h-full flex items-center justify-center relative'>
             <div className='text-white flex flex-col items-center gap-2 w-full'>
                 <div className='text-2xl'>Get Started</div> 
-                <div className='flex gap-5 w-full p-5 justify-center'>
-                    <button className='w-[30%] bg-blue-500 p-2 rounded hover:bg-blue-700' onClick={()=>navigate("/login")}>Login</button>
-                    <button className='w-[30%] bg-blue-500 p-2 rounded hover:bg-blue-700' onClick={()=>navigate("/signup")} >Signup</button>
+                <div className='flex gap-5 w-full p-5 justify-center flex-col md:flex-row items-center'>
+                    <button className='min-w-[30%] bg-blue-500 p-2 rounded hover:bg-blue-700' onClick={()=>navigate("/login")}>Login</button>
+                    <button className='min-w-[30%] bg-blue-500 p-2 rounded hover:bg-blue-700' onClick={()=>navigate("/signup")} >Signup</button>
                 </div>
             </div>
             <div className='absolute bottom-10 text-white'>
