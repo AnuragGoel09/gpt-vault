@@ -6,10 +6,11 @@ import Cookies from 'js-cookie'
 import { initializeUser } from '../../redux/userSlice.js'
 import Loader from '../Loader.jsx'
 
-export default function Authenticated({children,setLoader}) {
+export default function Authenticated({children}) {
     const navigate=useNavigate()
     const user=useSelector((state)=>state.user.value)
     const dispatch=useDispatch()
+    const [loader,setLoader]=useState(true);
     
     useEffect(()=>{
         if(!user){
@@ -48,7 +49,7 @@ export default function Authenticated({children,setLoader}) {
     },[user])
     
     return (
-    <>
+    <> {loader && <Loader/>} 
        {children}  
     </>
   )

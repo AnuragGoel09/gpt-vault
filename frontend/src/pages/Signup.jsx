@@ -4,13 +4,16 @@ import { loginUser, registerUser } from '../utils/user.requests.js'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { initializeUser } from '../redux/userSlice.js'
+import Loader from '../components/Loader.jsx'
 
 export default function Signup() {
     const navigate=useNavigate()
     const dispatch=useDispatch()
     const [error,setError]=useState("")
+    const [loader,setLoader]=useState(false)
 
     const handleSubmit=async(e)=>{
+        setLoader((prev)=>true)
         e.preventDefault()
         setError(()=>"")
         const formData=new FormData(e.target);
@@ -39,9 +42,11 @@ export default function Signup() {
             },5000)
             console.log("error- ",error)
         }
+        setLoader((prev)=>false)
     }
   return (
     <div className="bg-zinc-900 h-screen w-screen flex relative">
+        {loader && <Loader/>}
         <div className='w-[80%] h-[80%] bg-violet-800 m-auto rounded-md shadow-lg relative flex items-center shadow-black'>
             <div className='ml-10 mt-10 text-4xl font-bold flex items-end text-white absolute top-0 left-0' style={{textShadow:'0px 3px 4px black'}}>
                 GPT<span className='text-black text-2xl font-extrabold'>Vault</span>

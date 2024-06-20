@@ -11,24 +11,19 @@ import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const user=useSelector(state=>state.user.value)
-  const [loader,setLoader]=useState(true);
+  
 
   return (
     <div className="overflow-hidden bg-slate-500">
       <Router>
-        <Authenticated setLoader={setLoader}>
-          {
-            !loader && <Routes>
+        <Authenticated>
+          <Routes>
               <Route exact path="/" element={<Home/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/dashboard" element={<Dashboard/>}/>
               <Route element={NotFound} />
             </Routes>  
-          }
-          {
-            loader && <Loader/>
-          }
         </Authenticated>
       </Router>
     </div>
