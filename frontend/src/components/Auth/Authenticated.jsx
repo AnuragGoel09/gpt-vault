@@ -42,6 +42,9 @@ export default function Authenticated({children}) {
                     handleAccess()
             }
         }
+        else{
+            setLoader(false)
+        }
     },[])
     useEffect(()=>{
         if(user)
