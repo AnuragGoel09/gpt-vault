@@ -21,10 +21,13 @@ export default function Navbar() {
   }
 
   return (
-    <div className='w-full px-20 py-5 flex justify-between items-center sticky top-0 bg-zinc-900 '>
+    <div className='w-full px-5 pt-20 flex justify-between items-center sticky top-0 bg-zinc-900 text-sm '>
         <div>
             <div className='bg-stone-800 px-5 py-2 rounded font-medium hover:bg-stone-700 cursor-pointer'>Gemini <KeyboardArrowDownIcon/></div>
         </div>
+        {/* <div className='text-red-600 text-sm'>
+          Note - Website might work very slow due to free hosting
+        </div> */}
         <div className='flex items-center justify-center gap-4'>
             {file.fileName && <div>{file.fileName}.gpt</div>}
             <div className=' flex flex-col items-end relative'>

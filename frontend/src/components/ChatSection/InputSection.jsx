@@ -48,14 +48,14 @@ export default function InputSection(props) {
   return (
     <div className='w-full sticky bottom-0 bg-transparent'>
         <div 
-        className='max-w-[60%] m-auto mb-5 flex bg-zinc-800 px-10 items-center justify-center rounded-tl-[20px] rounded-bl-[20px] rounded-br-[20px] rounded-tr-[20px] relative'
+        className='max-w-[90%] lg:max-w-[60%] m-auto mb-5 flex bg-zinc-800 px-5 lg:px-10 items-center justify-center rounded-tl-[20px] rounded-bl-[20px] rounded-br-[20px] rounded-tr-[20px] relative'
         >    
             {
               !sending && 
                 <textarea 
                 value={input}
                 placeholder='Type message here'
-                className='w-full h-15 p-5 rounded-full outline-none border-none overflow-hidden bg-transparent resize-none' 
+                className='w-full text-sm h-15 p-5 rounded-full outline-none border-none overflow-hidden bg-transparent resize-none' 
                 onChange={handleHeight}
                 />
             }
@@ -70,7 +70,7 @@ export default function InputSection(props) {
             
             
             <div
-            className='absolute right-3 bottom-3 rounded-full bg-violet-700 p-2 flex justify-center items-center cursor-pointer'
+            className='absolute  right-0 lg:right-3 bottom-3 rounded-full bg-violet-700 p-2 flex justify-center items-center cursor-pointer'
             >
              {
               !sending && <SendIcon onClick={handleSend}/> 

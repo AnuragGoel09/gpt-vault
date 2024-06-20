@@ -14,7 +14,7 @@ export default function FileManager(props) {
   },[rootFolder])
 
   return (
-    <div className='w-1/5 bg-violet-950 pt-20'>
+    <div className='absolute lg:relative left-0 bg-violet-950 pt-20 z-20 h-full max-w-[100%] min-w-[20%]'>
       {rootFolder && <Folder data={rootFolder} root={true}/>}
     </div>
   )
